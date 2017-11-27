@@ -12,11 +12,11 @@
 
     <cn.com.cesgroup.numpickerview.NumberPickerView
         android:id="@+id/purchase_num1"
-        android:layout_width="wrap_content"
+        android:layout_width="100dp"
         android:layout_height="wrap_content"
-        app:buttonWidth="40dp"
+        app:buttonWidth="20dp"
         app:editable="true"
-        app:editextWidth="120dp"
+        app:editextWidth="60dp"
         app:individer="@drawable/divider_horizontal"
         app:textColor="@android:color/black"
         app:textSize="14sp" />

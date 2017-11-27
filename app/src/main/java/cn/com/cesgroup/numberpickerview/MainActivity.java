@@ -50,8 +50,12 @@ public class MainActivity extends AppCompatActivity {
             public void onWarningMaxInput(int maxValue) {
                 Toast.makeText(MainActivity.this,"超过最大限制量",Toast.LENGTH_SHORT).show();
             }
-        });
 
+                    @Override
+                    public void onInputValue(int Value) {
+
+                    }
+                });
     }
 
     @Override
