@@ -25,7 +25,8 @@ public class NumberPickerView extends LinearLayout implements View.OnClickListen
 
     //当前输入框可输入的值（默认为不限制）
     private int maxValue = Integer.MAX_VALUE;
-
+    //当前输入框输入的值（默认为不限制）
+    private int inputValue = getMinDefaultNum();
     //当前的库存量（默认为不限制）
     private int currentInventory = Integer.MAX_VALUE;
 
@@ -227,6 +228,7 @@ public class NumberPickerView extends LinearLayout implements View.OnClickListen
         int numText = getNumText();
         if (widgetId == R.id.button_sub) {
             if (numText > minDefaultNum + 1) {
+                setInputValue(numText - 1);
                 mNumText.setText(String.valueOf(numText - 1));
             } else {
                 mNumText.setText(String.valueOf(minDefaultNum));
@@ -237,6 +239,7 @@ public class NumberPickerView extends LinearLayout implements View.OnClickListen
         } else if (widgetId == R.id.button_add) {
             if (numText < Math.min(maxValue, currentInventory)) {
                 mNumText.setText(String.valueOf(numText + 1));
+                setInputValue(numText + 1);
             } else if (currentInventory < maxValue) {
                 mNumText.setText(String.valueOf(currentInventory));
                 //库存不足
@@ -320,6 +323,10 @@ public class NumberPickerView extends LinearLayout implements View.OnClickListen
         if (onClickInputListener != null)
             onClickInputListener.onWarningMaxInput(maxValue);
     }
+    private void setInputValue(int inputValue){
+        if (onClickInputListener != null)
+            onClickInputListener.onInputValue(inputValue);
+    }
 
     /**
      * 超过警戒值回调
@@ -330,6 +337,8 @@ public class NumberPickerView extends LinearLayout implements View.OnClickListen
         void onWarningMinInput(int minValue);
 
         void onWarningMaxInput(int maxValue);
+
+        void onInputValue(int Value);
     }
 
     /**
