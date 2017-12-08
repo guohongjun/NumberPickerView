@@ -277,8 +277,10 @@ public class NumberPickerView extends LinearLayout implements View.OnClickListen
             if (!TextUtils.isEmpty(inputText)) {
                 int inputNum = Integer.parseInt(inputText);
                 if (inputNum < minDefaultNum) {
-                    mNumText.setText(String.valueOf(minDefaultNum));
-                    setInputValue(minDefaultNum);
+                    mNumText.setText(String.valueOf(inputNum));
+                    if (inputNum >= 0) {
+                        setInputValue(inputNum);
+                    }
                     // 小于警戒值
                     warningForMinInput();
                 } else if (inputNum <= Math.min(maxValue, currentInventory)) {
