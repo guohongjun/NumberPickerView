@@ -232,6 +232,7 @@ public class NumberPickerView extends LinearLayout implements View.OnClickListen
                 mNumText.setText(String.valueOf(numText - 1));
             } else {
                 mNumText.setText(String.valueOf(minDefaultNum));
+                setInputValue(minDefaultNum);
                 //小于警戒值
                 warningForMinInput();
                 Log.d("NumberPicker", "减少已经到达极限");
@@ -242,11 +243,13 @@ public class NumberPickerView extends LinearLayout implements View.OnClickListen
                 setInputValue(numText + 1);
             } else if (currentInventory < maxValue) {
                 mNumText.setText(String.valueOf(currentInventory));
+                setInputValue(currentInventory);
                 //库存不足
                 warningForInventory();
                 Log.d("NumberPicker", "增加已经到达极限");
             } else {
                 mNumText.setText(String.valueOf(maxValue));
+                setInputValue(maxValue);
                 // 超过限制数量
                 warningForMaxInput();
                 Log.d("NumberPicker", "达到已经限制的输入数量");
@@ -275,16 +278,20 @@ public class NumberPickerView extends LinearLayout implements View.OnClickListen
                 int inputNum = Integer.parseInt(inputText);
                 if (inputNum < minDefaultNum) {
                     mNumText.setText(String.valueOf(minDefaultNum));
+                    setInputValue(minDefaultNum);
                     // 小于警戒值
                     warningForMinInput();
                 } else if (inputNum <= Math.min(maxValue, currentInventory)) {
                     mNumText.setText(inputText);
+                    setInputValue(inputNum);
                 } else if (inputNum >= maxValue) {
                     mNumText.setText(String.valueOf(maxValue));
+                    setInputValue(maxValue);
                     //超过限量
                     warningForMaxInput();
                 } else {
                     mNumText.setText(String.valueOf(currentInventory));
+                    setInputValue(currentInventory);
                     //库存不足
                     warningForInventory();
                 }
